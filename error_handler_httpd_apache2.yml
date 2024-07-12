@@ -1,0 +1,29 @@
+---
+- name: playbook for error handler
+  hosts: all
+  become: true
+  tasks:
+    - name: install httpd in Redhat
+      yum:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: start httpd in redhat
+      service:
+        name: httpd-----
+        state: started
+      ignore_errors: true
+
+    - name: install apache2 in Debian
+      apt:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: start apache2
+      service:
+        name: apache2
+        state: started
+      when: ansible_os_family == "Debian"
+
