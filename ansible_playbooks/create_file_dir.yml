@@ -1,0 +1,20 @@
+---
+- name: this playbook for the create file and directory.
+  hosts: all
+  become: true
+  tasks:
+    - name: create Directory
+      file:
+       path: /etc/ansible/test_dir
+       state: directory
+       mode: '0777'
+       owner: ansadmin   # Optional: Set owner
+       group: ansadmin   # Optional: Set group
+
+    - name: create file
+      file:
+        path: /etc/ansible/test_dir/firt_file
+        state: touch
+        mode: '0777'
+        owner: ansadmin
+        group: ansadmin
