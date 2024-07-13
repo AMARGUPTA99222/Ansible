@@ -1,6 +1,0 @@
----
-- name: playbook for the Roles
-  hosts: all
-  become: true
-  roles:
-    - setup_webserver
