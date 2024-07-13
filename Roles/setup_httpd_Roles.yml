@@ -1,0 +1,6 @@
+---
+- name: playbook for Roles
+  hosts: all
+  become: true
+  roles: 
+     - setup_httpd_Roles
