@@ -1,0 +1,16 @@
+---
+- name: playbook for remove file and dir
+  hosts: all
+  become: true
+  tasks:
+    - name: remove file
+      file:
+        path: /var/www/test_file
+        state: absent
+        mode: "0777"
+      
+    - name: remove directory
+      file:
+        path: /var/www/test_dir
+        state: absent
+        mode: "0777"

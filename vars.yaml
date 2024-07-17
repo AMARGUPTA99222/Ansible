@@ -1,0 +1,12 @@
+---
+- name: playbook for use vars
+  hosts: all
+  become: true
+  vars: 
+    - user: sunil
+  tasks: 
+    - name: crate user sunil
+      user: 
+        name: "{{user}}"
+        state: present
+

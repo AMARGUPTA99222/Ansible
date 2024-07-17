@@ -1,0 +1,22 @@
+---
+- name: install httpd 
+  yum: 
+    name: httpd 
+    state: present
+  when: ansible_os_family == "RedHat"
+  notify: start httpd
+
+- name: install apache2
+  apt: 
+    name: apache2
+    state: present
+  when: ansible_os_family == "Debian"
+  notify: start apache2
+
+- name: copy index file
+  copy:
+    src: /home/ansadmin/index.html
+    dest: /var/www/html/index.html
+    chmod: "0777"
+
+

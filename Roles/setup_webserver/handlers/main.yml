@@ -1,0 +1,13 @@
+---
+- name: start httpd
+  service:
+    name: httpd
+    state: started
+  when: ansible_os_family == "RedHat"
+
+- name: start apache2 
+  service: 
+    name: apache2 
+    state: sarted
+  when: ansible_os_family == "Debian"
+# handlers file for setup_webserver

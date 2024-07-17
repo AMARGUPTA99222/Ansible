@@ -1,0 +1,10 @@
+---
+- name: playbook for creat user
+  hosts: all
+  become: true
+  taska:
+    - name: create user
+      user:
+        name: amar
+        state: present
+        shell: /bin/bash

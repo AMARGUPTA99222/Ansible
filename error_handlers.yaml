@@ -1,0 +1,22 @@
+---
+- name: playbook for errors handlers
+  hosts: all
+  become: true
+  tasks:
+    - name: install git
+      yum: 
+        name: git
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: install httpd
+      yum: 
+        name: httpd----         # intentional error
+        state: present 
+          # when: ansible_os_family == "Debian"
+      ignore_errors: true
+
+    - name: install tree
+      yum: 
+        name: tree
+        state: present

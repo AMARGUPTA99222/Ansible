@@ -1,0 +1,6 @@
+---
+- name: playbook for webserver
+  hosts: all
+  become: true
+  roles:
+    - setup_webserver

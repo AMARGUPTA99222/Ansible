@@ -1,0 +1,8 @@
+---
+- name: playbook for create file and directory and copy data
+  hosts: all
+  become: true
+  tasks:
+    - name: copy data 
+      copy:
+        src: 

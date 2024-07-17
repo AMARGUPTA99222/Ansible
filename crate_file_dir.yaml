@@ -1,0 +1,27 @@
+---
+- name: playbook for create file and directory and copy data
+  hosts: all
+  become: true
+  tasks:
+    - name: copy data 
+      copy:
+        src: /home/ansadmin/imp_data.config
+        dest: /var/www/imp_data.config
+        mode: "0777"
+
+    - name: creat directory
+      file:
+        path: /var/www/test_dir
+        state: directory
+        mode: "0777"
+        owner: ansadmin
+        group: ansadmin
+
+    - name: create file
+      file: 
+       path: /var/www/test_file
+       state: touch
+       mode: "0777"
+       owner: ansadmin
+       group: ansadmin
+         

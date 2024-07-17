@@ -1,0 +1,19 @@
+---
+- name: Create multiple users on remote servers
+  hosts: all
+  become: yes
+
+  vars_files:
+    - users.yml
+
+  tasks:
+    - name: Ensure users are present
+      user:
+        name: "{{ item.name }}"
+        uid: "{{ item.uid }}"
+        group: "{{ item.group }}"
+          # shell: "{{ item.shell }}"
+          #   comment: "{{ item.comment }}"
+        state: present
+      loop: "{{ users }}"
+

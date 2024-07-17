@@ -1,0 +1,18 @@
+---
+users:
+  - name: alice
+    uid: 1001
+    group: ansadmin
+    shell: /bin/bash
+      #  comment: "Alice User"
+  - name: bob
+    uid: 1002
+    group: ansadmin
+    shell: /bin/bash
+      # comment: "Bob User"
+  - name: charlie
+    uid: 1003
+    group: ansadmin
+    shell: /bin/bash
+      # comment: "Charlie User"
+
