@@ -1,0 +1,9 @@
+---
+apache_package:
+  RedHat: httpd
+  Debian: apache2
+
+apache_service:
+  RedHat: httpd
+  Debian: apache2
+# vars file for web_pkginstall
