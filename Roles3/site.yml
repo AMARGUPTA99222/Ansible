@@ -1,0 +1,6 @@
+---
+- name: configure web server 
+  hosts: all
+  become: true
+  roles:
+    - web_pkginstall

@@ -1,0 +1,32 @@
+---
+- name: create users and password 
+  hosts: all
+  become: true
+  tasks: 
+    - name: create user for debian
+      user:
+        name: ganesh
+        state: present
+        password: "{{ 'your_password' | password_hash('sha512') }}"
+
+    - name: add user to the sudo group when its debian 
+      when: ansible_os_family == "Debian"
+      user:
+        name: ganesh
+        groups: sudo
+        append: true
+
+    - name: add user in wheel group when its RedHat
+      when: ansible_os_family == "RedHat"
+      user:
+        name: ganesh
+        groups: wheel
+        append: true
+
+    - name: Add passwordless sudo for ganesh
+      copy:
+       dest: /etc/sudoers.d/ganesh
+       content: "ganesh ALL=(ALL) NOPASSWD:ALL"
+       mode: '0440'
+       validate: "visudo -cf %s"
+

@@ -1,0 +1,31 @@
+---
+- name: Install Apache
+  package:
+    name: "{{ apache_package[ansible_os_family] }}"
+    state: present
+
+- name: Start Apache service
+  service:
+    name: "{{ apache_service[ansible_os_family] }}"
+    state: started
+    enabled: yes
+
+- name: Install git (required for cloning repo)
+  package:
+    name: git
+    state: present
+
+- name: Clone application repository
+  git:
+    repo: https://github.com/AMARGUPTA99222/temp.git
+    dest: /var/www/html
+    version: v7
+    force: yes
+  notify: restart apache      
+
+      #- name: Deploy index.html
+      #template:
+      #src: /home/ansadmin/roles/web_pkginstall/templates/index.html
+      #dest: /var/www/html/index.html
+      #notify: restart apache
+# tasks file for web_pkginstall

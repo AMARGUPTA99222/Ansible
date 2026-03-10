@@ -1,0 +1,29 @@
+---
+- name: install package
+  hosts: all
+  become: true
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: absent
+      notify: start httpd
+      when: ansible_os_family == "RedHat"
+
+    - name: install apache2
+      apt:
+        name: apache2
+        state: absent
+      notify: start apache2
+      when: ansible_os_family == "Debian"
+  
+  handlers:  
+    - name: start httpd
+      service:
+        name: httpd
+        state: started
+
+    - name: start apache2
+      service:
+        name: apache2
+        state: started

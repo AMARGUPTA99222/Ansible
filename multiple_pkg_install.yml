@@ -1,0 +1,13 @@
+---
+- name: instal multiple package
+  hosts: all
+  become: true
+  tasks:
+    - name: install git httpd apache2 tree
+      package:
+          name:
+           - git
+           - tree
+           - wget
+          state: present
+
